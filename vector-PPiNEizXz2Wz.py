@@ -1,4 +1,4 @@
-# meta developer: @destr4kt_def
+# пезда
 __version__ = (1, 4, 8, 8)
 
 from telethon import events
@@ -7,7 +7,7 @@ import asyncio
 
 @loader.tds
 class TikTokDownloader(loader.Module):
-    """Скачивание TikTok-видео без водяных знаков через @downloader_tiktok_bot"""
+    """Скачивание TikTok-видео без водяных знаков"""
     strings = {"name": "TikTokDL"}
 
     async def ttcmd(self, message):
@@ -19,7 +19,7 @@ class TikTokDownloader(loader.Module):
         bot = "@downloader_tiktok_bot"
 
         # Мгновенный редакт
-        await message.edit("🔄 Загрузка видео...")
+        await message.edit("Загрузка видео...")
 
         try:
             async with message.client.conversation(bot, timeout=20) as conv:
@@ -28,9 +28,9 @@ class TikTokDownloader(loader.Module):
                 await message.client.send_read_acknowledge(bot)
 
                 if resp.media:
-                    await message.edit(file=resp.media, text="🎬 Ваше видео успешно скачано")
+                    await message.edit(file=resp.media, text="")
                 else:
                     await message.edit(f"❌ Бот ответил без медиа:\n{resp.text}")
 
         except asyncio.TimeoutError:
-            await message.edit("⌛ Бот не ответил. Попробуй позже.")
+            await message.edit("Бот не ответил. Попробуй позже.")
