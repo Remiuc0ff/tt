@@ -19,7 +19,7 @@ class TikTokDownloader(loader.Module):
         bot = "@downloader_tiktok_bot"
 
         # Мгновенный редакт
-        await message.edit("Загрузка видео...")
+        await message.edit("<b><emoji document_id=5287613458777387650>😴</emoji> Загрузка видео...")
 
         try:
             async with message.client.conversation(bot, timeout=20) as conv:
