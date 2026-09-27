@@ -8,7 +8,7 @@ import asyncio
 @loader.tds
 class TikTokDownloader(loader.Module):
     """Скачивание TikTok-видео без водяных знаков"""
-    strings = {"name": "TikTokDL"}
+    strings = {"name": "TikTokPizda"}
 
     async def ttcmd(self, message):
         """<ссылка> — Скачать TikTok без водяных знаков"""
