@@ -14,12 +14,12 @@ class TikTokDownloader(loader.Module):
         """<ссылка> — Скачать TikTok без водяных знаков"""
         link = utils.get_args_raw(message)
         if not link:
-            return await utils.answer(message, "🔗 Укажи ссылку на TikTok-видео")
+            return await utils.answer(message, "<b><emoji document_id=5215477185233593209>🐈‍⬛</emoji> Укажи ссылку на TikTok-видео")
 
         bot = "@downloader_tiktok_bot"
 
         # Мгновенный редакт
-        await message.edit("<b><emoji document_id=5287613458777387650>😴</emoji> Загрузка видео...")
+        await message.edit("<b><emoji document_id=5217580005516682665>🐈‍⬛</emoji> Загрузка видео...")
 
         try:
             async with message.client.conversation(bot, timeout=20) as conv:
@@ -28,7 +28,7 @@ class TikTokDownloader(loader.Module):
                 await message.client.send_read_acknowledge(bot)
 
                 if resp.media:
-                    await message.edit(file=resp.media, text="")
+                    await message.edit(file=resp.media, text="<b><emoji document_id=5217581895302293118>🐈‍⬛</emoji> Видео успешно загружено")
                 else:
                     await message.edit(f"❌ Бот ответил без медиа:\n{resp.text}")
 
