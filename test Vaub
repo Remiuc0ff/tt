@@ -1,0 +1,45 @@
+import google.generativeai as genai
+from pyrogram import Client, filters
+from pyrogram.enums import ParseMode
+
+# Вставь сюда свой API-ключ от Google AI Studio
+GEMINI_API_KEY = "ТВОЙ_API_КЛЮЧ"
+genai.configure(api_key=GEMINI_API_KEY)
+
+# Используем быструю модель (отлично подходит для чатов)
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+# Если модуль работает в рамках существующего проекта (например, твоего ReMMods), 
+# используй уже созданный инстанс Client (app).
+# app = Client("my_userbot", api_id=API_ID, api_hash="API_HASH")
+
+@app.on_message(filters.me & filters.command("Gemini", prefixes="."))
+async def gemini_handler(client, message):
+    # Отделяем команду от вопроса
+    args = message.text.split(maxsplit=1)
+    
+    if len(args) < 2:
+        await message.edit("❌ Укажи вопрос. Пример: `.Gemini как поднять VPN?`")
+        return
+
+    question = args[1]
+    
+    # Визуальный отклик, пока ждем ответ от API
+    await message.edit("⏳ <i>Вайбкодим ответ...</i>", parse_mode=ParseMode.HTML)
+
+    try:
+        # Запрашиваем генерацию текста
+        response = model.generate_content(question)
+        
+        # Экранируем скобки, чтобы Телеграм не выдал ошибку парсинга разметки
+        safe_text = response.text.replace("<", "&lt;").replace(">", "&gt;")
+        
+        # Собираем итоговое сообщение: твой вопрос + ответ в блоке цитаты
+        final_message = f"<b>Ты спросил:</b> {question}\n\n<blockquote>{safe_text}</blockquote>"
+        
+        # Редактируем сообщение
+        await message.edit(final_message, parse_mode=ParseMode.HTML)
+        
+    except Exception as e:
+        # Ловим ошибки (например, проблемы с сетью или лимиты API)
+        await message.edit(f"❌ <b>Ошибка:</b> <code>{e}</code>", parse_mode=ParseMode.HTML)
