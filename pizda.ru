@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 
-# Module author: @Fl1yd
 
 import io
 import time
@@ -20,8 +18,6 @@ from telethon.tl.functions.messages import EditChatAdminRequest
 from telethon.tl.types import ChatAdminRights, ChatBannedRights
 
 from .. import loader, utils
-
-# ================== CONSTANS ========================
 
 DEMOTE_RIGHTS = ChatAdminRights(
     post_messages=None,
@@ -86,7 +82,7 @@ class AdminToolsMod(loader.Module):
         "pic_changed": "<b>Chat pic changed.</b>",
         "promote_none": "<b>No one to promote.</b>",
         "who": "<b>Who is it?</b>",
-        "not_admin": "<b>I`m not an admin here.</b>",
+        "not_admin": "<b>У вас нет прав чтобы сделать что-то</b>",
         "promoted": "<b>{} promoted to admin rights.\nRank: {}</b>",
         "wtf_is_it": "<b>What is it?</b>",
         "this_isn`t_a_chat": "<b>This isn`t a chat!</b>",
@@ -99,19 +95,19 @@ class AdminToolsMod(loader.Module):
         "no_rights": "<b>I don`t have rights.</b>",
         "pinned": "<b>Pinned successfully!</b>",
         "unpinned": "<b>Unpinned successfully!</b>",
-        "can`t_kick": "<b>Can`t kick.</b>",
-        "kicking": "<b>Kick...</b>",
+        "can`t_kick": "<b>Я не могу кикнуть </b>",
+        "kicking": "<b>Кикаю...</b>",
         "kick_none": "<b>No one to kick.</b>",
-        "kicked": "<b>{} kicked from chat.</b>",
-        "kicked_for_reason": "<b>{} kicked from chat.\nReason: {}.</b>",
-        "banning": "<b>Ban...</b>",
-        "banned": "<b>{} banned in chat.</b>",
-        "banned_for_reason": "<b>{} banned in chat.\nReason: {}</b>",
+        "kicked": "<b>{} Был кикнут с чата</b>",
+        "kicked_for_reason": "<b>{} Был кикнут с чата\nПричина: {}.</b>",
+        "banning": "<b>Баню...</b>",
+        "banned": "<b>{} Был забанен в чате</b>",
+        "banned_for_reason": "<b>{} Был забанен в чате\nПричина: {}</b>",
         "ban_none": "<b>No one to ban.</b>",
         "unban_none": "<b>No one to unban.</b>",
-        "unbanned": "<b>{} unbanned in chat.</b>",
+        "unbanned": "<b>{} Был разбанен</b>",
         "mute_none": "<b>No one to mute.</b>",
-        "muted": "<b>{} now muted for </b>",
+        "muted": "<b>{} был з </b>",
         "no_args": "<b>Invalid arguments specified.</b>",
         "unmute_none": "<b>No one to unmute.</b>",
         "unmuted": "<b>{} now unmuted.</b>",
